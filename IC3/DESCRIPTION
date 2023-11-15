@@ -1,0 +1,13 @@
+Package: IC3
+Type: Package
+Title: Infer Cell-Cell Communication with single cell resolution
+Version: 0.1.0
+Author: Dongyu Li
+Maintainer: Dongyu Li <m13691126860@163.com>
+Description: Spatial transcriptome is informative for cell cell communications. Existing methods focus on inference of cell communications at cell type level, which do not differentiate individual cells concerning the same cell type. It remains challenging to infer cell communications with single cell resolution. By incorporating spatial information, we propose a computational framework based on graphical modeling, to Infer Cell-Cell Communication (IC3) network at single cell level from spatial transcriptomic data. Our method is built upon the heuristic that physically adjacent cells are more likely to communicate with each other. We have demonstrated in simulations that IC3 outperforms existing methods in accuracy, and improves sensitivity to identify interactions associated with rare cell types. Applying IC3 to a study of mouse brain, IC3 revealed the spatial heterogeneity of cell communication network, thus providing additional insight of the underlying biology.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.2.2
+Depends: 
+    R (>= 2.10)

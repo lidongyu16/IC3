@@ -35,7 +35,7 @@ cellinfo=read.table("~/obdataforIC3/cellinfo.txt",header=TRUE);
 lrinfo=read.table(~/obdataforIC3/lrinfo.txt",header=TRUE);
 ```
 
-### Input of the main function IC3
+### Input of IC3
 
 A is the gene expression count matrix, each row represents a cell and each colume represents a gene.
 
@@ -50,7 +50,7 @@ result=IC3(A,cellinfo,lrinfo)
 ```
 This line of code will take approximately 40 minutes.
 
-### Output of the main function IC3
+### Output of IC3
 
 result contains 5 parts. The first part is the communication probability matrix at cell type level. It is a T by T upper triangular matrix where T is the number of cell type. The second part is the communication probability matrix at single cell level. The last 3 parts are the parameter estimation of lambda, beta and r.
 
@@ -62,20 +62,33 @@ For the communication between different cell types in the Olfactory Bulb and SVZ
 
 The benchmark file contains 5 columes, "Pubmed ID" means the Pubmed ID of reference,"name" means the reference paper's title. "Type.1" "Type.2" means the two interacting cell types' name. 
 
+Load the benchmark file after downloading the benchmark data to the local path:
+
+```R
+realob=read.table("~/obreal.txt",header=TRUE) 
+```
+
 ### Other Method Result
-We substituted the same data into the other five methods and obtained the communication matrix at the cell type level. We compared the results of different methods with the results of existing papers to obtain the ROC curve. The specific process is as follows 
+We substituted the same data into the other five methods (STANN, CellphoneDB, Giotto, SpaOTsc, COMMOT). We collect the results of these methods and organize them into  https://github.com/lidongyu16/IC3/tree/master/IC3/data/obOMresult.txt
+and  https://github.com/lidongyu16/IC3/tree/master/IC3/data/obsvzresult.txt. 
+
+The Other Method result contains 7 columes. First 2 colume represent 2 cell types, last 5 columes represent the communication strength estimated by 5 method. 
+
+Load the Other Method result file after downloading data to the local path:
+
+```R
+OMdata=read.table("~/obOMresult.txt")
+```
+
+### Plot ROC curve
 
 
 ```R
-typeresult=result[[1]];
-cellresult=result[[2]];
-lambda=result[[3]]
-beta=result[[4]];
-r=result[[5]]
+typeresult=result[[1]];  ##get the IC3 result
+typepairnum=dim(OMdata)[1];   
+internum=dim(realob)[1];
 
-alldata=read.table("/home/lidy/obOMresult.txt")
-typepairnum=dim(alldata)[1]
-IC3result=rep(0,typepairnum);
+IC3result=rep(0,typepairnum);   
 typename=rownames(typeresult)
 for (i in 1:typepairnum)
 {
@@ -83,6 +96,45 @@ for (i in 1:typepairnum)
     typeindextwo=which(typename==alldata[i,2]);
     indexone=min(typeindexone,typeindextwo);
     indextwo=max(typeindexone,typeindextwo);
-    IC3result[i]=typeresult[indexone,indextwo]
+    IC3result[i]=typeresult[indexone,indextwo];     ## change IC3 result matrix to a line that consistent with OMdata
 }
+wzreal=rep(0,typepairnum);
+for (i in 1:typepairnum)
+{
+   for (j in 1:internum)
+   {
+     if(realob[j,3]==alldata[i,1] &&  realob[j,4]==alldata[i,2])
+      {
+              wzreal[i]=1                         ## change benchmark matrix to a line that consistent with OMdata
+      }
+     if(realob[j,3]==alldata[i,2] &&  realob[j,4]==alldata[i,1])
+      {
+              wzreal[i]=1
+      }
+   }
+}
+library(pROC)
+library(ggplot2)
+
+stanndata=roc(wzreal,OMdata[,3])
+cellphonedata=roc(wzreal,OMdata[,4])
+giottodata=roc(wzreal,OMdata[,5])
+spaotscdata=roc(wzreal,OMdata[,6])
+commotdata=roc(wzreal,OMdata[,7])
+IC3data=roc(wzreal,IC3result)                     ## calculate the ROC between benchmark and all the methods.
+library(stringr)
+IC3str=paste("IC3 AUC =",round(IC3data[["auc"]],3),sep="")
+STANNstr=paste("STANN AUC =",round(stanndata[["auc"]],3),sep="")
+CellphoneDBstr=paste("CellphoneDB AUC =",round(cellphonedata[["auc"]],3),sep="")
+Giottostr=paste("Giotto AUC =",round(giottodata[["auc"]],3),sep="")
+SpaOTscstr=paste("SpaOTsc AUC =",round(spaotscdata[["auc"]],3),sep="")
+COMMOTstr=paste("COMMOT AUC =",round(commotdata[["auc"]],3),sep="")
+p=ggroc(list(IC3=IC3data,STANN=spacordata,CellphoneDB=cellphonedata,Giotto=giottodata,SpaOTsc=spaotscdata,COMMOT=commotdata), legacy.axes = TRUE)
+p=p+  annotate("text", x = 0.75, y = 0.5,label =IC3str,color="red")
+p=p+  annotate("text", x = 0.75, y = 0.45,label =STANNstr)
+p=p+  annotate("text", x = 0.75, y = 0.4,label =CellphoneDBstr)
+p=p+  annotate("text", x = 0.75, y = 0.35,label =Giottostr)
+p=p+  annotate("text", x = 0.75, y = 0.3,label =SpaOTscstr)
+p=p+  annotate("text", x = 0.75, y = 0.25,label =COMMOTstr)
+p      ## get the plot
 ```

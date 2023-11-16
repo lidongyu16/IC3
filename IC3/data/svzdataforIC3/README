@@ -1,0 +1,7 @@
+seqFISH+ SVZ dataset with field(fov) = 5 
+
+A is the gene expression count matrix, each row represents a cell and each colume represents a gene.
+
+cellinfo is the cell information matrix, each row represents a cell.The first column represents the x-axis coordinates of the cell, and the second column represents the y-axis coordinates of the cell. The third column represents the cell type of the cell. The row name is the name of the cell, and its order should be consistent with the order of gene expression matrix A;
+
+lrinfo represents the ligand-receptor database, each row represents a ligand-receptor pair, ligand is in the first column.

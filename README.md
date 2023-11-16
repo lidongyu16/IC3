@@ -84,7 +84,7 @@ OMdata=read.table("~/obOMresult.txt")
 
 
 ```R
-typeresult=result[[1]];  ##get the IC3 result
+typeresult=result[[1]];  ## get the IC3 result
 typepairnum=dim(OMdata)[1];   
 internum=dim(realob)[1];
 
@@ -140,3 +140,6 @@ p      ## get the plot
 ```
 
 So we can get the following plot:
+
+
+![image] (https://github.com/lidongyu16/IC3/blob/master/IC3/data/obPRcurve.png)

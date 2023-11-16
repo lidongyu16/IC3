@@ -142,4 +142,4 @@ p      ## get the plot
 So we can get the following plot:
 
 
-![image] (https://github.com/lidongyu16/IC3/blob/master/IC3/data/obPRcurve.png)
+![image](https://github.com/lidongyu16/IC3/blob/master/IC3/data/obPRcurve.png)

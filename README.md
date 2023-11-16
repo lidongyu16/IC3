@@ -138,3 +138,5 @@ p=p+  annotate("text", x = 0.75, y = 0.3,label =SpaOTscstr)
 p=p+  annotate("text", x = 0.75, y = 0.25,label =COMMOTstr)
 p      ## get the plot
 ```
+
+So we can get the following plot:

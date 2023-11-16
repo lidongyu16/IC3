@@ -35,7 +35,7 @@ cellinfo=read.table("~/obdataforIC3/cellinfo.txt",header=TRUE);
 lrinfo=read.table(~/obdataforIC3/lrinfo.txt",header=TRUE);
 ```
 
-### Input of the main function
+### Input of the main function IC3
 
 A is the gene expression count matrix, each row represents a cell and each colume represents a gene.
 
@@ -50,7 +50,7 @@ result=IC3(A,cellinfo,lrinfo)
 ```
 This line of code will take approximately 40 minutes.
 
-### Output of the main function
+### Output of the main function IC3
 
 result contains 5 parts. The first part is the communication probability matrix at cell type level. It is a T by T upper triangular matrix where T is the number of cell type. The second part is the communication probability matrix at single cell level. The last 3 parts are the parameter estimation of lambda, beta and r.
 
@@ -58,9 +58,10 @@ result contains 5 parts. The first part is the communication probability matrix 
 
 ### Benchmark 
 
+For the communication between different cell types in the Olfactory Bulb and SVZ (Subventurarian Zone) of mouse brain, we conducted an extensive review of the literature, with data sourced from the citeDB database (link: https://github.com/shanny01/benchmark/) and PubMed. We have put the summarized results into:
 
 
-We substituted the same data into the other five methods and obtained the interaction matrix at the cell type level. We compared the results of different methods with the results of existing papers to obtain the ROC curve. The specific process is as follows
+We substituted the same data into the other five methods and obtained the interaction matrix at the cell type level. We compared the results of different methods with the results of existing papers to obtain the ROC curve. The specific process is as follows 
 
 
 ```R

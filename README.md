@@ -58,8 +58,7 @@ result contains 5 parts. The first part is the communication probability matrix 
 
 ### Benchmark 
 
-For the communication between different cell types in the Olfactory Bulb and SVZ (Subventurarian Zone) of mouse brain, we conducted an extensive review of the literature, with data sourced from the citeDB database (link: https://github.com/shanny01/benchmark/) and PubMed. We have put the summarized results into:
-
+For the communication between different cell types in the Olfactory Bulb and SVZ (Subventurarian Zone) of mouse brain, we conducted an extensive review of the literature, with data sourced from the citeDB database (link: https://github.com/shanny01/benchmark/) and PubMed. We have put the summarized results into: https://github.com/lidongyu16/IC3/tree/master/IC3/data/obreal.txt and https://github.com/lidongyu16/IC3/tree/master/IC3/data/svzreal.txt
 
 We substituted the same data into the other five methods and obtained the interaction matrix at the cell type level. We compared the results of different methods with the results of existing papers to obtain the ROC curve. The specific process is as follows 
 

@@ -52,6 +52,7 @@ We substituted the same data into the other five methods and obtained the intera
 
 
 
+
 ```R
 result=IC3(A,cellinfo,lrinfo)
 ```

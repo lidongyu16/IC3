@@ -36,6 +36,7 @@ lrinfo=read.table(~/obdataforIC3/lrinfo.txt",header=TRUE);
 ```
 
 ### Input of IC3
+Input contains 3 parts: A, cellinfo and lrinfo.
 
 A is the gene expression count matrix, each row represents a cell and each colume represents a gene.
 
@@ -52,7 +53,7 @@ This line of code will take approximately 40 minutes.
 
 ### Output of IC3
 
-result contains 5 parts. The first part is the communication probability matrix at cell type level. It is a T by T upper triangular matrix where T is the number of cell type. The second part is the communication probability matrix at single cell level. The last 3 parts are the parameter estimation of lambda, beta and r.
+Output result contains 5 parts. The first part is the communication probability matrix at cell type level. It is a T by T upper triangular matrix where T is the number of cell type. The second part is the communication probability matrix at single cell level. The last 3 parts are the parameter estimation of lambda, beta and r.
 
 ## Verification of results
 

@@ -59,14 +59,14 @@ Output result contains 5 parts. The first part is the communication probability 
 
 ### Benchmark 
 
-For the communication between different cell types in the Olfactory Bulb and SVZ (Subventurarian Zone) of mouse brain, we conducted an extensive review of the literature, with data sourced from the citeDB database (link: https://github.com/shanny01/benchmark/) and PubMed. We have put the summarized results into benchmark file : https://github.com/lidongyu16/IC3/tree/master/IC3/data/obreal.txt and https://github.com/lidongyu16/IC3/tree/master/IC3/data/svzreal.txt 
+For the communication between different cell types in the Olfactory Bulb and SVZ (Subventurarian Zone) of mouse brain, we conducted an extensive review of the literature, with data sourced from the citeDB database (link: https://github.com/shanny01/benchmark/) and PubMed. We have put the summarized results into benchmark file : https://github.com/lidongyu16/IC3/tree/master/IC3/data/obbenchmark.txt and https://github.com/lidongyu16/IC3/tree/master/IC3/data/svzbenchmark.txt 
 
-The benchmark file contains 5 columes, "Pubmed ID" means the Pubmed ID of reference,"name" means the reference paper's title. "Type.1" "Type.2" means the two interacting cell types' name. 
+The benchmark file contains 3 columes, "Pubmed ID" means the Pubmed ID of reference. "Type1" "Type2" means the two interacting cell types' name. 
 
 Load the benchmark file after downloading the benchmark data to the local path:
 
 ```R
-realob=read.table("~/obreal.txt",header=TRUE) 
+realob=read.table("~/obbenchmark.txt",header=TRUE) 
 ```
 
 ### Other Method Result
@@ -104,11 +104,11 @@ for (i in 1:typepairnum)
 {
    for (j in 1:internum)
    {
-     if(realob[j,3]==alldata[i,1] &&  realob[j,4]==alldata[i,2])
+     if(realob[j,1]==alldata[i,1] &&  realob[j,2]==alldata[i,2])
       {
               wzreal[i]=1                         ## change benchmark matrix to a line that consistent with OMdata
       }
-     if(realob[j,3]==alldata[i,2] &&  realob[j,4]==alldata[i,1])
+     if(realob[j,1]==alldata[i,2] &&  realob[j,2]==alldata[i,1])
       {
               wzreal[i]=1
       }

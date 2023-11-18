@@ -1,0 +1,20 @@
+"type1" "type2" "ID"
+"1" "Neuroblast" "Astrocytes" 10377448
+"2" "Astrocytes" "Neuroblast" 15291796
+"3" "Astrocytes" "Neuroblast" 16508306
+"4" "Neural stem cell" "Neural progenitors" 20844536
+"5" "Neural stem cell" "Endothelial" 21253820
+"6" "Interneuron" "Astrocytes" 23619383
+"7" "OPC" "Neuroblast" 23671797
+"8" "Microglia" "Neural stem cell" 25245208
+"9" "Neural progenitors" "Astrocytes" 26528139
+"10" "Neural progenitors" "Microglia" 26528139
+"11" "Neural stem cell" "Endothelial" 28694515
+"12" "Neural progenitors" "Microglia" 30177874
+"13" "Neural stem cell" "Interneuron" 30777863
+"14" "Neural stem cell" "choroid plexus" 30777863
+"15" "Neural stem cell" "Neural stem cell" 30777863
+"16" "Neuroblast" "choroid plexus" 31064838
+"17" "Endothelial" "Neural progenitors" 32502570
+"18" "Neuroblast" "Oligodendrocytes" 36185360
+"19" "Astrocytes" "Oligodendrocytes" 37291151

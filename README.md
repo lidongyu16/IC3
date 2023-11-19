@@ -93,8 +93,8 @@ IC3result=rep(0,typepairnum);
 typename=rownames(typeresult)
 for (i in 1:typepairnum)
 {
-    typeindexone=which(typename==alldata[i,1]);
-    typeindextwo=which(typename==alldata[i,2]);
+    typeindexone=which(typename==OMdata[i,1]);
+    typeindextwo=which(typename==OMdata[i,2]);
     indexone=min(typeindexone,typeindextwo);
     indextwo=max(typeindexone,typeindextwo);
     IC3result[i]=typeresult[indexone,indextwo];     ## change IC3 result matrix to a line that consistent with OMdata
@@ -104,11 +104,11 @@ for (i in 1:typepairnum)
 {
    for (j in 1:internum)
    {
-     if(realob[j,1]==alldata[i,1] &&  realob[j,2]==alldata[i,2])
+     if(realob[j,1]==OMdata[i,1] &&  realob[j,2]==OMdata[i,2])
       {
               wzreal[i]=1                         ## change benchmark matrix to a line that consistent with OMdata
       }
-     if(realob[j,1]==alldata[i,2] &&  realob[j,2]==alldata[i,1])
+     if(realob[j,1]==OMdata[i,2] &&  realob[j,2]==OMdata[i,1])
       {
               wzreal[i]=1
       }

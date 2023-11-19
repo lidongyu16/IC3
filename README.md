@@ -32,7 +32,7 @@ Load the data after downloading the data to the local path:
 ```R
 A=read.table("~/obdataforIC3/A.txt",header=TRUE);
 cellinfo=read.table("~/obdataforIC3/cellinfo.txt",header=TRUE);
-lrinfo=read.table(~/obdataforIC3/lrinfo.txt",header=TRUE);
+lrinfo=read.table("~/obdataforIC3/lrinfo.txt",header=TRUE);
 ```
 
 ### Input of IC3

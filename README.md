@@ -30,9 +30,9 @@ We extracted example data from seqFISH+ and CellTalkDB and placed it in the foll
 Load the data after downloading the data to the local path:
 
 ```R
-A=read.table("~/obdataforIC3/A.txt",header=TRUE);
-cellinfo=read.table("~/obdataforIC3/cellinfo.txt",header=TRUE);
-lrinfo=read.table("~/obdataforIC3/lrinfo.txt",header=TRUE);
+A=read.table("~/IC3/data/obdataforIC3/A.txt",header=TRUE);
+cellinfo=read.table("~/IC3/data/obdataforIC3/cellinfo.txt",header=TRUE);
+lrinfo=read.table("~/IC3/data/obdataforIC3/lrinfo.txt",header=TRUE);
 ```
 
 ### Input of IC3
@@ -66,7 +66,7 @@ The benchmark file contains 3 columes, "Pubmed ID" means the Pubmed ID of refere
 Load the benchmark file after downloading the benchmark data to the local path:
 
 ```R
-realob=read.table("~/obbenchmark.txt",header=TRUE) 
+realob=read.table("~/IC3/data/obbenchmark.txt",header=TRUE) 
 ```
 
 ### Other Method Result
@@ -78,7 +78,7 @@ The Other Method result contains 7 columes. First 2 colume represent 2 cell type
 Load the Other Method result file after downloading data to the local path:
 
 ```R
-OMdata=read.table("~/obOMresult.txt")
+OMdata=read.table("~/IC3/data/obOMresult.txt")
 ```
 
 ### Plot ROC curve

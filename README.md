@@ -117,12 +117,12 @@ for (i in 1:typepairnum)
 library(pROC)
 library(ggplot2)
 
-stanndata=roc(wzreal,OMdata[,3])
-cellphonedata=roc(wzreal,OMdata[,4])
-giottodata=roc(wzreal,OMdata[,5])
-spaotscdata=roc(wzreal,OMdata[,6])
-commotdata=roc(wzreal,OMdata[,7])
-IC3data=roc(wzreal,IC3result)                     ## calculate the ROC between benchmark and all the methods.
+stanndata=roc(wzreal,OMdata[,3],direction="<")
+cellphonedata=roc(wzreal,OMdata[,4],direction="<")
+giottodata=roc(wzreal,OMdata[,5],direction="<")
+spaotscdata=roc(wzreal,OMdata[,6],direction="<")
+commotdata=roc(wzreal,OMdata[,7],direction="<")
+IC3data=roc(wzreal,IC3result,direction="<")                     ## calculate the ROC between benchmark and all the methods.
 library(stringr)
 IC3str=paste("IC3 AUC =",round(IC3data[["auc"]],3),sep="")
 STANNstr=paste("STANN AUC =",round(stanndata[["auc"]],3),sep="")

@@ -4,15 +4,14 @@
 #' @param cellinfo  Cell information matrix, each row represents a cell.The first column represents the x-axis coordinates of the cell, and the second column represents the y-axis coordinates of the cell. The third column represents the cell type of the cell. The row name is the name of the cell, and its order should be consistent with the order of gene expression matrix A.
 #' @param lrinfo lrinfo: Ligand-Receptor Database, each row represents a ligand-receptor pair. Ligand is in the first column.
 #' @param alpha   Distance proportional threshold, cells with a distance exceeding the threshold are considered to have no interaction with each other. Default value is 0.02.
-#' @param s   The seed. Default value is 1.
+#' 
 #' @return The first term: the communication probability with cell type level; The second term: the communication probability with single cell level. The 3-5th term: parameter estimation of lambda;beta;r=(r0,r1,r2).
 #' @export
 #'
-#' @examples IC3(A, cellinfo, lrinfo, alpha = 0.02,seednum)
-IC3 <- function(A, cellinfo, lrinfo, alpha = 0.02, seednum = 1) {
+#' @examples IC3(A, cellinfo, lrinfo, alpha = 0.02)
+IC3 <- function(A, cellinfo, lrinfo, alpha = 0.02) {
   library(progress)
   library(stringr)
-  set.seed(seednum)
   sulv <- 0.5
   A <- as.matrix(A)
   if (length(which(A %% 1 > 0)) > 0) {

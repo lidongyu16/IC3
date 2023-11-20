@@ -502,7 +502,7 @@ IC3 <- function(A, cellinfo, lrinfo, alpha = 0.02) {
       if (chabeta < 0.1 && chalambda < 0.01 && char < 0.01 && chaECI < 0.01) {
         break
       }
-      if ((lljilu[itr] - lljilu[itr - 1] < 0.2 && (lljilu[itr - 1] - lljilu[itr - 2]) < 0.2) {
+      if ((lljilu[itr] - lljilu[itr - 1]) < 0.2 && (lljilu[itr - 1] - lljilu[itr - 2]) < 0.2) {
         break
       }
     }

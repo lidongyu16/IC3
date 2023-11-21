@@ -6,14 +6,14 @@
 #' @param alpha   Distance proportional threshold, cells with a distance exceeding the threshold are considered to have no interaction with each other. Default value is 0.02.
 #' @param minitr The minimum iteration number. Default is 20.
 #' @param maxitr The maximum iteration number. Default is 100.
+#' @param sulv The speed coefficient of iteration. Default is 0.5.
 #' @return The first term: the communication probability with cell type level; The second term: the communication probability with single cell level. The 3-5th term: parameter estimation of lambda;beta;r=(r0,r1,r2).
 #' @export
 #'
 #' @examples IC3(A, cellinfo, lrinfo)
-IC3 <- function(A, cellinfo, lrinfo, alpha = 0.02, minitr =20, maxitr = 100) {
+IC3 <- function(A, cellinfo, lrinfo, alpha = 0.02, minitr =20, maxitr = 100, sulv = 0.5) {
   library(progress)
   library(stringr)
-  sulv <- 0.5
   A <- as.matrix(A)
   if (length(which(A %% 1 > 0)) > 0) {
     return("error:there are non-intergers in your count matrix")

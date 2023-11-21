@@ -8,8 +8,8 @@
 #' @return The first term: the communication probability with cell type level; The second term: the communication probability with single cell level. The 3-5th term: parameter estimation of lambda;beta;r=(r0,r1,r2).
 #' @export
 #'
-#' @examples IC3(A, cellinfo, lrinfo, alpha = 0.02)
-IC3 <- function(A, cellinfo, lrinfo, alpha = 0.02) {
+#' @examples IC3(A, cellinfo, lrinfo)
+IC3 <- function(A, cellinfo, lrinfo, alpha = 0.02, minitr =20, maxitr = 100) {
   library(progress)
   library(stringr)
   sulv <- 0.5
@@ -231,8 +231,8 @@ IC3 <- function(A, cellinfo, lrinfo, alpha = 0.02) {
     return(logl)
   }
   library(stringr)
-  lljilu <- rep(0, 100)
-  for (itr in 1:100)
+  lljilu <- rep(0, maxitr)
+  for (itr in 1:maxitr)
   {
     print(paste("The", itr, "iterate", sep = " "))
     print("ICM step")
@@ -498,7 +498,7 @@ IC3 <- function(A, cellinfo, lrinfo, alpha = 0.02) {
     r1 <- newr1
     r2 <- newr2
     lljilu[itr] <- Q(e, y, r0, r1, r2, ECI, hatW, lambda, beta)
-    if (itr > 20) {
+    if (itr > minitr) {
       if (chabeta < 0.1 && chalambda < 0.01 && char < 0.01 && chaECI < 0.01) {
         break
       }

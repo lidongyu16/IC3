@@ -498,7 +498,7 @@ IC3 <- function(A, cellinfo, lrinfo, alpha = 0.02) {
     r1 <- newr1
     r2 <- newr2
     lljilu[itr] <- Q(e, y, r0, r1, r2, ECI, hatW, lambda, beta)
-    if (itr > 3) {
+    if (itr > 20) {
       if (chabeta < 0.1 && chalambda < 0.01 && char < 0.01 && chaECI < 0.01) {
         break
       }

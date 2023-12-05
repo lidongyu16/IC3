@@ -7,11 +7,12 @@
 #' @param minitr The minimum iteration number. Default is 20.
 #' @param maxitr The maximum iteration number. Default is 100.
 #' @param sulv The speed coefficient of iteration. Default is 0.5.
+#' @param minbeta The minimum value of parameter beta. Default is 0.
 #' @return The first term: the communication probability with cell type level; The second term: the communication probability with single cell level. The 3-5th term: parameter estimation of lambda;beta;r=(r0,r1,r2).
 #' @export
 #'
 #' @examples IC3(A, cellinfo, lrinfo)
-IC3 <- function(A, cellinfo, lrinfo, alpha = 0.02, minitr =20, maxitr = 100, sulv = 0.5) {
+IC3 <- function(A, cellinfo, lrinfo, alpha = 0.02, minitr =20, maxitr = 100, sulv = 0.5, minbeta = 0) {
   library(progress)
   library(stringr)
   A <- as.matrix(A)
@@ -157,7 +158,7 @@ IC3 <- function(A, cellinfo, lrinfo, alpha = 0.02, minitr =20, maxitr = 100, sul
       lambda[i, j] <- max(chulambda[i, j], 0.001)
     }
   }
-  beta <- rep(0, genepairnum)
+  beta <- rep(minbeta, genepairnum)
   CInum <- matrix(0, typenum, typenum)
   for (i in 1:cellpairnum)
   {
@@ -331,7 +332,7 @@ IC3 <- function(A, cellinfo, lrinfo, alpha = 0.02, minitr =20, maxitr = 100, sul
       if (kk < (-5)) {
         kk <- -5
       }
-      newbeta[i] <- max(0, beta[i] - sulv * kk)
+      newbeta[i] <- max(minbeta, beta[i] - sulv * kk)
     }
     chabeta <- max(abs(beta - newbeta))
     beta <- newbeta

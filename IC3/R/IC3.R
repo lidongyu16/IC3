@@ -536,7 +536,7 @@ IC3 <- function(A, cellinfo, lrinfo, alpha = 0.02, minitr =20, maxitr = 100, min
     if (kk < (-5)) {
       kk <- -5
     }
-    newr2 <- r2 - sulv * kk
+    newr2 <- r2 - 0.5 * kk
     char <- max(c(newr0 - r0, newr1 - r1, newr2 - r2))
     r0 <- newr0
     r1 <- newr1

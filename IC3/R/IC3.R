@@ -7,7 +7,7 @@
 #' @param minitr The minimum iteration number. Default is 20.
 #' @param maxitr The maximum iteration number. Default is 100.
 #' @param minbeta The minimum value of parameter beta. Default is 0.
-#' @return The first term: the communication probability with cell type level; The second term: the communication probability with single cell level. The 3-5th term: parameter estimation of lambda;beta;r=(r0,r1,r2).
+#' @return The first term: the communication probability with cell type level; The second term: the communication probability with single cell level. The 3-5th term: parameter estimation of lambda;beta;r=(r0,r1,r2). The 6th term: log likelihood after each iteration
 #' @export
 #'
 #' @examples IC3(A, cellinfo, lrinfo)
@@ -559,6 +559,6 @@ IC3 <- function(A, cellinfo, lrinfo, alpha = 0.02, minitr =20, maxitr = 100, min
   typeresult <- ECI
   cellresult <- data.frame(cellname[cellpair[, 1]], cellname[cellpair[, 2]], e)
   colnames(cellresult) <- c("Cell 1", "Cell 2", "e")
-  result <- list(typeresult, cellresult, lambda, beta, c(r0, r1, r2))
+  result <- list(typeresult, cellresult, lambda, beta, c(r0, r1, r2),lljilu)
   return(result)
 }

@@ -514,7 +514,7 @@ IC3 <- function(A, cellinfo, lrinfo, alpha = 0.02, minitr =20, maxitr = 100, min
     if (kk < (-5)) {
       kk <- -5
     }
-    newr0 <- r0 - sulv * kk
+    newr0 <- r0 - 0.5 * kk
     kk <- onedaoyi / onedaoer
     if (is.na(kk)) {
       kk <- 0
@@ -525,7 +525,7 @@ IC3 <- function(A, cellinfo, lrinfo, alpha = 0.02, minitr =20, maxitr = 100, min
     if (kk < (-5)) {
       kk <- -5
     }
-    newr1 <- r1 - sulv * kk
+    newr1 <- r1 - 0.5 * kk
     kk <- twodaoyi / twodaoer
     if (is.na(kk)) {
       kk <- 0

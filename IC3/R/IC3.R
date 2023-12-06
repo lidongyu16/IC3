@@ -6,13 +6,12 @@
 #' @param alpha   Distance proportional threshold, cells with a distance exceeding the threshold are considered to have no interaction with each other. Default value is 0.02.
 #' @param minitr The minimum iteration number. Default is 20.
 #' @param maxitr The maximum iteration number. Default is 100.
-#' @param sulv The speed coefficient of iteration. Default is 0.5.
 #' @param minbeta The minimum value of parameter beta. Default is 0.
 #' @return The first term: the communication probability with cell type level; The second term: the communication probability with single cell level. The 3-5th term: parameter estimation of lambda;beta;r=(r0,r1,r2).
 #' @export
 #'
 #' @examples IC3(A, cellinfo, lrinfo)
-IC3 <- function(A, cellinfo, lrinfo, alpha = 0.02, minitr =20, maxitr = 100, sulv = 0.5, minbeta = 0) {
+IC3 <- function(A, cellinfo, lrinfo, alpha = 0.02, minitr =20, maxitr = 100, minbeta = 0) {
   library(progress)
   library(stringr)
   A <- as.matrix(A)
@@ -332,8 +331,20 @@ IC3 <- function(A, cellinfo, lrinfo, alpha = 0.02, minitr =20, maxitr = 100, sul
       if (kk < (-5)) {
         kk <- -5
       }
-      newbeta[i] <- max(minbeta, beta[i] - sulv * kk)
+      newbeta[i] <- max(minbeta, beta[i] - 0.5 * kk)
     }
+    candidatesulv <- c(1,0.5,0.2,0.1,0);
+    yuanll <- Q(e, y, r0, r1, r2, ECI, hatW, lambda, beta)
+    for (tt in 1:5)
+    {
+       candidatebeta <- candidatesulv[tt] * newbeta + (1-candidatesulv[tt]) * beta
+       nowll <- Q(e, y, r0, r1, r2, ECI, hatW, lambda, candidatebeta)
+       if (nowll > yuanll)
+       {
+           break;
+       }
+    }
+    newbeta <- candidatebeta
     chabeta <- max(abs(beta - newbeta))
     beta <- newbeta
     print("Maximize lambda")
@@ -381,10 +392,22 @@ IC3 <- function(A, cellinfo, lrinfo, alpha = 0.02, minitr =20, maxitr = 100, sul
           if (kk < (-5)) {
             kk <- -5
           }
-          newlambda[t, g] <- max(0.001, min(chulambda[t, g], (lambda[t, g] - sulv * kk)))
+          newlambda[t, g] <- max(0.001, min(chulambda[t, g], (lambda[t, g] - 0.5 * kk)))
         }
       }
     }
+    candidatesulv <- c(1,0.5,0.2,0.1,0);
+    yuanll <- Q(e, y, r0, r1, r2, ECI, hatW, lambda, beta)
+    for (tt in 1:5)
+    {
+       candidatelambda <- candidatesulv[tt] * newlambda + (1-candidatesulv[tt]) * lambda
+       nowll <- Q(e, y, r0, r1, r2, ECI, hatW, candidatelambda, beta)
+       if (nowll > yuanll)
+       {
+           break;
+       }
+    }
+    newlambda <- candidatelambda
     chalambda <- max(abs(newlambda - lambda))
     lambda <- newlambda
     print("Maximize I")
@@ -429,10 +452,29 @@ IC3 <- function(A, cellinfo, lrinfo, alpha = 0.02, minitr =20, maxitr = 100, sul
           if (kk < (-5)) {
             kk <- -5
           }
-          newECI[i, j] <- max(0.001, min(0.999, ECI[i, j] - sulv * kk))
+          newECI[i, j] <- max(0.001, min(0.999, ECI[i, j] - 0.5 * kk))
         }
       }
     }
+    candidatesulv <- c(1,0.5,0.2,0.1,0);
+    yuanll <- Q(e, y, r0, r1, r2, ECI, hatW, lambda, beta)
+    for (tt in 1:5)
+    {
+       candidateECI <- ECI
+       for (di in 1:typenum)
+       {
+          for (dj in 1:typenum)
+          {
+              candidateECI[di,dj]=candidatesulv[tt] * newECI[di,dj] + (1-candidatesulv[tt]) * ECI[di,dj]
+          }
+       }
+       nowll <- Q(e, y, r0, r1, r2, candidateECI, hatW, lambda, beta)
+       if (nowll > yuanll)
+       {
+           break;
+       }
+    }
+    newECI <- candidateECI
     chaECI <- max(abs(newECI - ECI))
     ECI <- newECI
     print("Maximize r0,r1,r2")

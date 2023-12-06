@@ -11,7 +11,7 @@
 #' @export
 #'
 #' @examples IC3(A, cellinfo, lrinfo)
-IC3 <- function(A, cellinfo, lrinfo, alpha = 0.02, minitr =20, maxitr = 100, minbeta = 0) {
+IC3 <- function(A, cellinfo, lrinfo, alpha = 0.02, minitr = 10, maxitr = 100, minbeta = 0) {
   library(progress)
   library(stringr)
   A <- as.matrix(A)

@@ -232,7 +232,7 @@ IC3 <- function(A, cellinfo, lrinfo, alpha = 0.02, minitr = 10, maxitr = 100, mi
     return(logl)
   }
   library(stringr)
-  lljilu <- rep(0, maxitr)
+  lljilu <- matrix(0, maxitr, 5)
   for (itr in 1:maxitr)
   {
     print(paste("The", itr, "iterate", sep = " "))
@@ -334,7 +334,8 @@ IC3 <- function(A, cellinfo, lrinfo, alpha = 0.02, minitr = 10, maxitr = 100, mi
       newbeta[i] <- max(minbeta, beta[i] - 0.5 * kk)
     }
     candidatesulv <- c(1,0.5,0.2,0.1,0);
-    yuanll <- Q(e, y, r0, r1, r2, ECI, hatW, lambda, beta)
+    lljilu[itr,1] <- Q(e, y, r0, r1, r2, ECI, hatW, lambda, beta)
+    yuanll <- lljilu[itr,1]
     for (tt in 1:5)
     {
        candidatebeta <- candidatesulv[tt] * newbeta + (1-candidatesulv[tt]) * beta
@@ -344,6 +345,7 @@ IC3 <- function(A, cellinfo, lrinfo, alpha = 0.02, minitr = 10, maxitr = 100, mi
            break;
        }
     }
+    lljilu[itr,2] <- nowll
     newbeta <- candidatebeta
     chabeta <- max(abs(beta - newbeta))
     beta <- newbeta
@@ -397,7 +399,7 @@ IC3 <- function(A, cellinfo, lrinfo, alpha = 0.02, minitr = 10, maxitr = 100, mi
       }
     }
     candidatesulv <- c(1,0.5,0.2,0.1,0);
-    yuanll <- Q(e, y, r0, r1, r2, ECI, hatW, lambda, beta)
+    yuanll <- lljilu[itr,2];
     for (tt in 1:5)
     {
        candidatelambda <- candidatesulv[tt] * newlambda + (1-candidatesulv[tt]) * lambda
@@ -407,6 +409,7 @@ IC3 <- function(A, cellinfo, lrinfo, alpha = 0.02, minitr = 10, maxitr = 100, mi
            break;
        }
     }
+    lljilu[itr,3] <- nowll;
     newlambda <- candidatelambda
     chalambda <- max(abs(newlambda - lambda))
     lambda <- newlambda
@@ -457,7 +460,7 @@ IC3 <- function(A, cellinfo, lrinfo, alpha = 0.02, minitr = 10, maxitr = 100, mi
       }
     }
     candidatesulv <- c(1,0.5,0.2,0.1,0);
-    yuanll <- Q(e, y, r0, r1, r2, ECI, hatW, lambda, beta)
+    yuanll <- lljilu[itr,3]
     for (tt in 1:5)
     {
        candidateECI <- ECI
@@ -474,6 +477,7 @@ IC3 <- function(A, cellinfo, lrinfo, alpha = 0.02, minitr = 10, maxitr = 100, mi
            break;
        }
     }
+    lljilu[itr,4] <- nowll;
     newECI <- candidateECI
     chaECI <- max(abs(newECI - ECI))
     ECI <- newECI
@@ -541,7 +545,7 @@ IC3 <- function(A, cellinfo, lrinfo, alpha = 0.02, minitr = 10, maxitr = 100, mi
     r0 <- newr0
     r1 <- newr1
     r2 <- newr2
-    lljilu[itr] <- Q(e, y, r0, r1, r2, ECI, hatW, lambda, beta)
+    lljilu[itr,5] <- Q(e, y, r0, r1, r2, ECI, hatW, lambda, beta)
     if (itr > minitr) {
       if (chabeta < 0.1 && chalambda < 0.01 && char < 0.01 && chaECI < 0.01) {
         break
@@ -559,7 +563,7 @@ IC3 <- function(A, cellinfo, lrinfo, alpha = 0.02, minitr = 10, maxitr = 100, mi
   typeresult <- ECI
   cellresult <- data.frame(cellname[cellpair[, 1]], cellname[cellpair[, 2]], e)
   colnames(cellresult) <- c("Cell 1", "Cell 2", "e")
-  lljilu <- lljilu[1:itr]
+  lljilu <- lljilu[1:itr,]
   result <- list(typeresult, cellresult, lambda, beta, c(r0, r1, r2),lljilu)
   return(result)
 }

@@ -7,7 +7,7 @@
 #' @param minitr The minimum iteration number. Default is 10.
 #' @param maxitr The maximum iteration number. Default is 100.
 #' @param minbeta The minimum value of parameter beta. Default is 0.
-#' @return The first term: the communication probability with cell type level; The second term: the communication probability with single cell level. The 3-5th term: parameter estimation of lambda;beta;r=(r0,r1,r2). The 6th term: log likelihood after each iteration
+#' @return The first term: the communication probability with cell type level; The second term: the communication probability with single cell level. The 3-5th term: parameter estimation of lambda;beta;r=(r0,r1,r2). The 6th term: Q function value after each iteration
 #' @export
 #'
 #' @examples IC3(A, cellinfo, lrinfo)

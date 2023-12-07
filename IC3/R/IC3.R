@@ -559,6 +559,7 @@ IC3 <- function(A, cellinfo, lrinfo, alpha = 0.02, minitr = 10, maxitr = 100, mi
   typeresult <- ECI
   cellresult <- data.frame(cellname[cellpair[, 1]], cellname[cellpair[, 2]], e)
   colnames(cellresult) <- c("Cell 1", "Cell 2", "e")
+  lljilu <- lljilu[1:itr]
   result <- list(typeresult, cellresult, lambda, beta, c(r0, r1, r2),lljilu)
   return(result)
 }

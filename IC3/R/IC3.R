@@ -32,6 +32,8 @@ IC3 <- function(A, cellinfo, lrinfo, alpha = 0.02, minitr = 10, maxitr = 100, mi
   if (dim(lrinfo)[2] != 2) {
     return("error:the second dimension of ligand-receptor matrix is not equal to 2")
   }
+  text <- paste("Data uploaded successfully, there are ",cellnum," cells and",genenum," genes."," The ligand receptor database has ",dim(lrinfo)[1]," different pairs.")
+  print(text)
   location <- cellinfo[, 1:2]
   cellname <- rownames(cellinfo)
   celldist <- as.matrix(dist(location, upper = TRUE, diag = TRUE))

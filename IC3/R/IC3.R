@@ -43,9 +43,9 @@ IC3 <- function(A, cellinfo, lrinfo, alpha = 0.02, minitr = 10, maxitr = 100, mi
   for (i in 1:cellnum)
   {
       print(i);
-      point <- as.numeric(location[i,])
-      points <- as.matrix(location)
-      distances <- ((points[,1] - point[1])^2+ (points[,2] - point[2])^2)^(0.5)
+      dian <- as.numeric(location[i,])
+      dians <- as.matrix(location)
+      distances <- ((dians[,1] - dian[1])^2+ (dians[,2] - dian[2])^2)^(0.5)
       nearpair[i,1] <- i;
       nearpair[i,2] <- order(distances)[2];
       nearpair[i,3] <- sort(distances)[2];

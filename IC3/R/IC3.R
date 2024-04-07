@@ -78,8 +78,8 @@ IC3 <- function(A, cellinfo, lrinfo, alpha = 0.02, minitr = 10, maxitr = 100, mi
   cellneighbor <- list()
   for (i in 1:cellnum)
   {
-     neighborone <- which(cellpair[,1]==i)
-     neighbortwo <- which(cellpair[,2]==i)  
+     neighborone <- cellpair[which(cellpair[,1]==i),2]
+     neighbortwo <- cellpair[which(cellpair[,2]==i),1]  
      cellneighbor[[i]] <- union(neighborone,neighbortwo)
   }
   library(Matrix)

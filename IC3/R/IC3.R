@@ -155,11 +155,7 @@ IC3 <- function(A, cellinfo, lrinfo, alpha = 0.02, minitr = 10, maxitr = 100, mi
     typeindex[i] <- which(typename == celltype[i])
   }
   typenum <- length(typename)
-  ddata <- rep(0, cellpairnum)
-  for (i in 1:cellpairnum)
-  {
-    ddata[i] <- celldist[cellpair[i, 1], cellpair[i, 2]]
-  }
+  ddata <- cellpair[,3]
   numc <- rowMeans(y)
   for (i in 1:length(numc)) {
     numc[i] <- max(0.001, numc[i])

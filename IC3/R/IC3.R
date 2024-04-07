@@ -104,6 +104,8 @@ IC3 <- function(A, cellinfo, lrinfo, alpha = 0.02, minitr = 10, maxitr = 100, mi
   }
   lrpair <- lrpair[1:s, ]
   genepairnum <- s
+  text <- paste("There are ", genepairnum, "ligand-receptor pairs in the gene list")
+  print(text)
   allgene <- sort(unique(as.numeric(lrpair)))
   ligand <- sort(unique(as.numeric(lrpair[, 1])))
   receptor <- sort(unique(as.numeric(lrpair[, 2])))

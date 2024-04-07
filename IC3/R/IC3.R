@@ -34,34 +34,61 @@ IC3 <- function(A, cellinfo, lrinfo, alpha = 0.02, minitr = 10, maxitr = 100, mi
   }
   text <- paste("Data uploaded successfully, there are ",cellnum," cells and",genenum," genes."," The ligand receptor database has ",dim(lrinfo)[1]," different pairs.")
   print(text)
+  location <- as.matrix(cellinfo)
   location <- cellinfo[, 1:2]
   cellname <- rownames(cellinfo)
-  celldist <- as.matrix(dist(location, upper = TRUE, diag = TRUE))
-  alldist <- unique(as.numeric(celldist))
-  threshold <- quantile(alldist, alpha)
-  cellmatrix <- matrix(0, cellnum, cellnum)
+  pairnum <- alpha*cellnum*cellnum/2
+  candidatepair <- matrix(100000,pairnum,3);
+  nearpair <- matrix(0,cellnum,3)
   for (i in 1:cellnum)
   {
-    cellmatrix[i, setdiff(which(celldist[, i] < threshold), i)] <- 1
-    if (length(setdiff(which(celldist[, i] < threshold), i)) == 0) {
-      cellmatrix[i, order(celldist[, i])[2]] <- 1
-      cellmatrix[order(celldist[, i])[2], i] <- 1
-    }
+      print(i);
+      point <- as.numeric(location[i,])
+      points <- as.matrix(location)
+      distances <- sqrt(rowSums((points - point)^2))
+      distances <- ((points[,1] - point[1])^2+ (points[,2] - point[2])^2)^(0.5)
+      nearpair[i,1] <- i;
+      nearpair[i,2] <- order(distances)[2];
+      nearpair[i,3] <- sort(distances)[2];
+      thispair <- matrix(0,cellnum,3);
+      thispair[,1] <- rep(i,cellnum);
+      thispair[,2] <- 1:cellnum; 
+      thispair[,3] <- distances;
+      thispair <- thispair[-i,];
+      candidatepair <- rbind(candidatepair,thispair)
+      candidatepair <- candidatepair[order(candidatepair[,3])[1:pairnum],]
   }
+  allpair <- rbind(candidatepair,nearpair)
+  threshold <-  max(candidatepair[,3]);
+  for (i in 1:nrow(allpair)) {
+    if (allpair[i, 2] < allpair[i, 1]) {
+      temp <- allpair[i, 1]
+      allpair[i, 1] <- allpair[i, 2]
+      allpair[i, 2] <- temp
+    } 
+  }  
+  duplicate_rows <- duplicated(allpair)
+  allpair_unique <- allpair[!duplicate_rows, ]
+  cellpair <- allpair_unique 
+  cellpairnum <- dim(cellpair)[1]
+  text <- paste("The interaction ratio is ",alpha,".The interaction distance threshold is ", threshold)
+  print(text) 
+  text <- paste("There are ",cellpairnum," possible interact cell pairs.")
+  print(text)
   cellneighbor <- list()
   for (i in 1:cellnum)
   {
-    cellneighbor[[i]] <- which(cellmatrix[, i] == 1)
+     neighborone <- which(cellpair[,1]==i)
+     neighbortwo <- which(cellpair[,2]==i)  
+     cellneighbor[[i]] <- union(neighborone,neighbortwo)
   }
-  cellpairnum <- sum(cellmatrix) / 2
-  cellpair <- which(cellmatrix == 1, arr.ind = TRUE)
-  cellpair <- cellpair[which(cellpair[, 1] < cellpair[, 2]), ]
-  cellpairindex <- matrix(0, cellnum, cellnum)
-  for (i in 1:dim(cellpair)[1])
+  library(Matrix)
+  cellpairindex  <- Matrix(data = 0L, nrow=cellnum, ncol = cellnum, sparse = TRUE)
+  for (i in 1:cellpairnum)
   {
-    cellpairindex[cellpair[i, 1], cellpair[i, 2]] <- i
-    cellpairindex[cellpair[i, 2], cellpair[i, 1]] <- i
-  }
+     cellpairindex[cellpair[i, 1], cellpair[i, 2]] <- i
+     cellpairindex[cellpair[i, 2], cellpair[i, 1]] <- i
+  }  
   cellname <- as.character(rownames(A))
   genename <- as.character(colnames(A))
   lrinfo <- as.matrix(lrinfo)

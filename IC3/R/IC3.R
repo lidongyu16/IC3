@@ -45,7 +45,6 @@ IC3 <- function(A, cellinfo, lrinfo, alpha = 0.02, minitr = 10, maxitr = 100, mi
       print(i);
       point <- as.numeric(location[i,])
       points <- as.matrix(location)
-      distances <- sqrt(rowSums((points - point)^2))
       distances <- ((points[,1] - point[1])^2+ (points[,2] - point[2])^2)^(0.5)
       nearpair[i,1] <- i;
       nearpair[i,2] <- order(distances)[2];

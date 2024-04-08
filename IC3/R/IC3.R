@@ -42,9 +42,10 @@ IC3 <- function(A, cellinfo, lrinfo, alpha = 0.02, minitr = 10, maxitr = 100, mi
   pairnum <- alpha*cellnum*cellnum/2
   candidatepair <- matrix(100000,pairnum,3);
   nearpair <- matrix(0,cellnum,3)
+  pb <- progress_bar$new(total = cellnum)
   for (i in 1:cellnum)
   {
-      print(i);
+      pb$tick()
       dian <- as.numeric(location[i,])
       dians <- as.matrix(location)
       distances <- ((dians[,1] - dian[1])^2+ (dians[,2] - dian[2])^2)^(0.5)

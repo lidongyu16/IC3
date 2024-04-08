@@ -35,8 +35,8 @@ IC3 <- function(A, cellinfo, lrinfo, alpha = 0.02, minitr = 10, maxitr = 100, mi
   text <- paste("Data uploaded successfully, there are ",cellnum," cells and",genenum," genes."," The ligand receptor database has ",dim(lrinfo)[1]," different pairs.")
   print(text)
   location <- data.frame(cellinfo[,1:2])
-  location[i,1] <- as.numeric(location[,1]);
-  location[i,2] <- as.numeric(location[,2]);
+  location[,1] <- as.numeric(location[,1]);
+  location[,2] <- as.numeric(location[,2]);
   location <- as.matrix(location)
   cellname <- rownames(cellinfo)
   pairnum <- alpha*cellnum*cellnum/2

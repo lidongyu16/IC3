@@ -43,6 +43,7 @@ IC3 <- function(A, cellinfo, lrinfo, alpha = 0.02, minitr = 10, maxitr = 100, mi
   candidatepair <- matrix(100000,pairnum,3);
   nearpair <- matrix(0,cellnum,3)
   pb <- progress_bar$new(total = cellnum)
+  print("Calculating the distances between cells")
   for (i in 1:cellnum)
   {
       pb$tick()

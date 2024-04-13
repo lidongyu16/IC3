@@ -72,7 +72,9 @@ IC3 <- function(A, cellinfo, lrinfo, alpha = 0.02, minitr = 10, maxitr = 100, mi
   }  
   duplicate_rows <- duplicated(allpair)
   allpair_unique <- allpair[!duplicate_rows, ]
-  cellpair <- allpair_unique 
+  selfpair <- matrix(0,cellnum,3);
+  selfpair[,1] <- 1:cellnum;selfpair[,2] <- 1:cellnum;
+  cellpair <- rbind(allpair_unique,selfpair); 
   cellpairnum <- dim(cellpair)[1]
   text <- paste("The interaction ratio is ",alpha,".The interaction distance threshold is ", threshold)
   print(text) 

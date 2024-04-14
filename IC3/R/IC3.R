@@ -467,8 +467,10 @@ IC3 <- function(A, cellinfo, lrinfo, alpha = 0.02, minitr = 10, maxitr = 100, mi
       daoyi[type1, type2] <- daoyi[type1, type2] - fenzi / fenmu
       daoer[type1, type2] <- daoer[type1, type2] + r1 * e[i] * (-1 / (ECI[type1, type2])^2 + 1 / (1 - ECI[type1, type2])^2)
       fenzi <- exp(jiben) * r1^2 * (1 / ECI[type1, type2] + 1 / (1 - ECI[type1, type2]))^2
-      fenzi <- fenzi + exp(jiben) * r1 * (-1 / (ECI[type1, type2])^2 + 1 / (1 - ECI[type1, type2])^2)
       fenmu <- (1 + exp(jiben))^2
+      daoer[type1, type2] <- daoer[type1, type2] - fenzi / fenmu
+      fenzi <- exp(jiben) * r1 * (-1 / (ECI[type1, type2])^2 + 1 / (1 - ECI[type1, type2])^2)
+      fenmu <- 1 + exp(jiben)
       daoer[type1, type2] <- daoer[type1, type2] - fenzi / fenmu
     }
     newECI <- ECI

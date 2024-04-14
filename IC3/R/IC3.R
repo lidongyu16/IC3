@@ -4,6 +4,7 @@
 #' @param cellinfo  Cell information matrix, each row represents a cell.The first column represents the x-axis coordinates of the cell, and the second column represents the y-axis coordinates of the cell. The third column represents the cell type of the cell. The row name is the name of the cell, and its order should be consistent with the order of gene expression matrix A.
 #' @param lrinfo lrinfo: Ligand-Receptor Database, each row represents a ligand-receptor pair. Ligand is in the first column.
 #' @param alpha   Distance proportional threshold, cells with a distance exceeding the threshold are considered to have no interaction with each other. Default value is 0.02.
+#' @param selfinter  Consider self communication or not, default is TRUE.
 #' @param minitr The minimum iteration number. Default is 10.
 #' @param maxitr The maximum iteration number. Default is 100.
 #' @param minbeta The minimum value of parameter beta. Default is 0.
@@ -11,7 +12,7 @@
 #' @export
 #'
 #' @examples IC3(A, cellinfo, lrinfo)
-IC3 <- function(A, cellinfo, lrinfo, alpha = 0.02, minitr = 10, maxitr = 100, minbeta = 0) {
+IC3 <- function(A, cellinfo, lrinfo, alpha = 0.02, selfinter = TRUE, minitr = 10, maxitr = 100, minbeta = 0) {
   library(progress)
   library(stringr)
   A <- as.matrix(A)
@@ -72,9 +73,16 @@ IC3 <- function(A, cellinfo, lrinfo, alpha = 0.02, minitr = 10, maxitr = 100, mi
   }  
   duplicate_rows <- duplicated(allpair)
   allpair_unique <- allpair[!duplicate_rows, ]
-  selfpair <- matrix(0,cellnum,3);
-  selfpair[,1] <- 1:cellnum;selfpair[,2] <- 1:cellnum;
-  cellpair <- rbind(allpair_unique,selfpair); 
+  if (selfinter)
+  {
+    selfpair <- matrix(0,cellnum,3);
+    selfpair[,1] <- 1:cellnum;selfpair[,2] <- 1:cellnum;
+    cellpair <- rbind(allpair_unique,selfpair); 
+  }
+  if (selfinter == FALSE)
+  {
+     cellpair <- allpair_unique; 
+  }
   cellpairnum <- dim(cellpair)[1]
   text <- paste("The interaction ratio is ",alpha,".The interaction distance threshold is ", threshold)
   print(text) 

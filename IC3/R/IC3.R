@@ -347,8 +347,8 @@ IC3 <- function(A, cellinfo, lrinfo, alpha = 0.02, selfinter = FALSE, minitr = 1
         for (nc in cellneighbor[[c]]) {
           daoyi <- daoyi + 2 * e[cellpairindex[c, nc]] * atan(y[c, gene1]) * atan(y[nc, gene2])
         }
-        Zlist <- conll(0:10, c, gene1, e)
-        addlist <- daoll(0:10, c, gene2, e)
+        Zlist <- conll(0:10, c, gene1, hatW)
+        addlist <- daoll(0:10, c, gene2, hatW)
         B0gene12 <- sum(exp(Zlist))
         B1gene12 <- sum(exp(Zlist) * addlist)
         B2gene12 <- sum(exp(Zlist) * addlist^2)
@@ -417,9 +417,9 @@ IC3 <- function(A, cellinfo, lrinfo, alpha = 0.02, selfinter = FALSE, minitr = 1
           typecell <- which(typeindex == t)
           for (c in typecell)
           {
-            A0 <- sum(exp(dconll(0:10, c, g, e, 0)))
-            A1 <- sum(exp(dconll(0:10, c, g, e, 1)))
-            A2 <- sum(exp(dconll(0:10, c, g, e, 2)))
+            A0 <- sum(exp(dconll(0:10, c, g, hatW, 0)))
+            A1 <- sum(exp(dconll(0:10, c, g, hatW, 1)))
+            A2 <- sum(exp(dconll(0:10, c, g, hatW, 2)))
             daoyi <- daoyi + y[c, g] / lambda[t, g] - numc[c] * A1 / A0
             daoer <- daoer - y[c, g] / lambda[t, g]^2 - numc[c]^2 * (A2 * A0 - A1^2) / A0^2
           }

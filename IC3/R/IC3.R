@@ -276,14 +276,13 @@ IC3 <- function(A, cellinfo, lrinfo, alpha = 0.02, selfinter = FALSE, minitr = 1
   for (itr in 1:maxitr)
   {
     print(paste("The", itr, "iterate", sep = " "))
-    print("ICM step")
+    print("E step")
     hatW <- rep(0, cellpairnum)
     for (i in 1:cellpairnum) {
       if (e[i] > 0.5) {
         hatW[i] <- 1
       }
     }
-    print("E step")
     pb <- progress_bar$new(total = cellpairnum)
     logit <- function(x) {
       y <- log(x) - log(1 - x)
@@ -523,7 +522,7 @@ IC3 <- function(A, cellinfo, lrinfo, alpha = 0.02, selfinter = FALSE, minitr = 1
     newECI <- candidateECI
     chaECI <- max(abs(newECI - ECI))
     ECI <- newECI
-    print("Maximize r0,r1,r2")
+    print("Maximize r")
     logit <- function(x) {
       y <- log(x) - log(1 - x)
       return(y)
@@ -571,7 +570,7 @@ IC3 <- function(A, cellinfo, lrinfo, alpha = 0.02, selfinter = FALSE, minitr = 1
     if (kk < (-5)) {
       kk <- -5
     }
-    newr1 <- r1 - 0.5 * kk
+    newr1 <- r1
     kk <- twodaoyi / twodaoer
     if (is.na(kk)) {
       kk <- 0
@@ -606,6 +605,6 @@ IC3 <- function(A, cellinfo, lrinfo, alpha = 0.02, selfinter = FALSE, minitr = 1
   cellresult <- data.frame(cellname[cellpair[, 1]], cellname[cellpair[, 2]], e)
   colnames(cellresult) <- c("Cell 1", "Cell 2", "e")
   lljilu <- lljilu[1:itr,]
-  result <- list(typeresult, cellresult, lambda, beta, c(r0, r1, r2),lljilu)
+  result <- list(typeresult, cellresult, lambda, beta, c(r0,r2),lljilu)
   return(result)
 }

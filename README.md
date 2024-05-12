@@ -47,9 +47,9 @@ lrinfo represents the ligand-receptor database, each row represents a ligand-rec
 Then we use IC3 function to construct the cell-cell communication with single-cell resolution.
 
 ```R
-result=IC3(A,cellinfo,lrinfo)
+result=IC3(A, cellinfo, lrinfo, alpha = 0.01,maxitr = 5)
 ```
-This line of code will take approximately 40 minutes.
+This line of code will take approximately 75 minutes.
 
 ### Output of IC3
 

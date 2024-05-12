@@ -131,7 +131,7 @@ CellphoneDBstr=paste("CellphoneDB AUC =",round(cellphonedata[["auc"]],3),sep="")
 Giottostr=paste("Giotto AUC =",round(giottodata[["auc"]],3),sep="")
 SpaOTscstr=paste("SpaOTsc AUC =",round(spaotscdata[["auc"]],3),sep="")
 COMMOTstr=paste("COMMOT AUC =",round(commotdata[["auc"]],3),sep="")
-CelllChatstr=paste("CelllChat AUC =",round(cellchatdata[["auc"]],3),sep="")
+CellChatstr=paste("CellChat AUC =",round(cellchatdata[["auc"]],3),sep="")
 
 p=ggroc(list(STANN=stanndata,CellphoneDB=cellphonedata,Giotto=giottodata,SpaOTsc=spaotscdata,COMMOT=commotdata,CellChat=cellchatdata,IC3=IC3data), legacy.axes = TRUE)
 
@@ -141,12 +141,9 @@ p=p+  annotate("text", x = 0.75, y = 0.4,label =CellphoneDBstr)
 p=p+  annotate("text", x = 0.75, y = 0.35,label =Giottostr)
 p=p+  annotate("text", x = 0.75, y = 0.3,label =SpaOTscstr)
 p=p+  annotate("text", x = 0.75, y = 0.25,label =COMMOTstr)
-p=p+  annotate("text", x = 0.75, y = 0.2,label =CelllChatstr)
-p <- p + scale_color_manual(values = c("IC3" = "red", "STANN" = "blue", "CellphoneDB" = "green", "Giotto" = "purple", "SpaOTsc" = "orange", "COMMOT" = "yellow"))   
-p      ## get the plot
+p=p+  annotate("text", x = 0.75, y = 0.2,label =CellChatstr)
+p <- p + scale_color_manual(values = c("IC3" = "red", "STANN" = "blue", "CellphoneDB" = "green", "Giotto" = "purple", "SpaOTsc" = "orange", "COMMOT" = "yellow","CellChat"="black"))
+p    
 ```
 
 So we can get the following plot:
-
-
-![image](https://github.com/lidongyu16/IC3/blob/master/IC3/data/obPRcurve.png)

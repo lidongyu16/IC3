@@ -116,12 +116,13 @@ for (i in 1:typepairnum)
 }
 library(pROC)
 library(ggplot2)
-
 stanndata=roc(wzreal,OMdata[,3],direction="<")
 cellphonedata=roc(wzreal,OMdata[,4],direction="<")
 giottodata=roc(wzreal,OMdata[,5],direction="<")
 spaotscdata=roc(wzreal,OMdata[,6],direction="<")
 commotdata=roc(wzreal,OMdata[,7],direction="<")
+cellchatdata=roc(wzreal,OMdata[,8],direction="<")
+
 IC3data=roc(wzreal,IC3result,direction="<")                     ## calculate the ROC between benchmark and all the methods.
 library(stringr)
 IC3str=paste("IC3 AUC =",round(IC3data[["auc"]],3),sep="")
@@ -130,13 +131,18 @@ CellphoneDBstr=paste("CellphoneDB AUC =",round(cellphonedata[["auc"]],3),sep="")
 Giottostr=paste("Giotto AUC =",round(giottodata[["auc"]],3),sep="")
 SpaOTscstr=paste("SpaOTsc AUC =",round(spaotscdata[["auc"]],3),sep="")
 COMMOTstr=paste("COMMOT AUC =",round(commotdata[["auc"]],3),sep="")
-p=ggroc(list(IC3=IC3data,STANN=stanndata,CellphoneDB=cellphonedata,Giotto=giottodata,SpaOTsc=spaotscdata,COMMOT=commotdata), legacy.axes = TRUE)
+CelllChatstr=paste("CelllChat AUC =",round(cellchatdata[["auc"]],3),sep="")
+
+p=ggroc(list(STANN=stanndata,CellphoneDB=cellphonedata,Giotto=giottodata,SpaOTsc=spaotscdata,COMMOT=commotdata,CellChat=cellchatdata,IC3=IC3data), legacy.axes = TRUE)
+
 p=p+  annotate("text", x = 0.75, y = 0.5,label =IC3str,color="red")
 p=p+  annotate("text", x = 0.75, y = 0.45,label =STANNstr)
 p=p+  annotate("text", x = 0.75, y = 0.4,label =CellphoneDBstr)
 p=p+  annotate("text", x = 0.75, y = 0.35,label =Giottostr)
 p=p+  annotate("text", x = 0.75, y = 0.3,label =SpaOTscstr)
 p=p+  annotate("text", x = 0.75, y = 0.25,label =COMMOTstr)
+p=p+  annotate("text", x = 0.75, y = 0.2,label =CelllChatstr)
+p <- p + scale_color_manual(values = c("IC3" = "red", "STANN" = "blue", "CellphoneDB" = "green", "Giotto" = "purple", "SpaOTsc" = "orange", "COMMOT" = "yellow"))   
 p      ## get the plot
 ```
 

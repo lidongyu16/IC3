@@ -21,7 +21,7 @@
 "20" "Neuroblast" "Oligodendrocytes" 36185360
 "21" "Astrocytes" "Oligodendrocytes" 37291151
 "22" "choroid plexus" "Astrocytes" 26174708
-"23"	 "choroid plexus" "Interneuron" 26174708
+"23" "choroid plexus" "Interneuron" 26174708
 "24" "choroid plexus" "choroid plexus" 26174708
 "25"  "Ependymal" "Ependymal" 36415662
 "26" "Oligodendrocytes" "OPC"  31770564

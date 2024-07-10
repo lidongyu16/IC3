@@ -12,10 +12,18 @@
 "11" "Neural stem cell" "Endothelial" 28694515
 "12" "Interneuron" "Interneuron" 30177874
 "13" "Neural progenitors" "Microglia" 30177874
-"14" "Neural stem cell" "Interneuron" 30777863
-"15" "Neural stem cell" "choroid plexus" 30777863
-"16" "Neural stem cell" "Neural stem cell" 30777863
-"17" "Neuroblast" "choroid plexus" 31064838
-"18" "Endothelial" "Neural progenitors" 32502570
-"19" "Neuroblast" "Oligodendrocytes" 36185360
-"20" "Astrocytes" "Oligodendrocytes" 37291151
+"14" "Neural progenitors" "Neural progenitors" 30177874
+"15" "Neural stem cell" "Interneuron" 30777863
+"16" "Neural stem cell" "choroid plexus" 30777863
+"17" "Neural stem cell" "Neural stem cell" 30777863
+"18" "Neuroblast" "choroid plexus" 31064838
+"19" "Endothelial" "Neural progenitors" 32502570
+"20" "Neuroblast" "Oligodendrocytes" 36185360
+"21" "Astrocytes" "Oligodendrocytes" 37291151
+"22" "choroid plexus" "Astrocytes" 26174708
+"23"	 "choroid plexus" "Interneuron" 26174708
+"24" "choroid plexus" "choroid plexus" 26174708
+"25"  "Ependymal" "Ependymal" 36415662
+"26" "Oligodendrocytes" "OPC"  31770564
+"27" "Interneuron" "Ependymal" 35450289
+"28" "Neuroblast" "Neuroblast" 17883412

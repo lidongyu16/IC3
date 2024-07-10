@@ -1,9 +1,9 @@
 "typename1" "typename2" "STANN" "cellphoneDB" "Giotto" "SpaOTsc" "COMMOT" "CellChat"
-"1" "choroid plexus" "choroid plexus" 0 0 0 0.0430140085227311 0.03 119
+"1" "choroid plexus" "choroid plexus" 0 0 0 0 0.03 119
 "2" "choroid plexus" "Endothelial" 0 6 0 0 0 0
 "3" "choroid plexus" "Interneuron" 0 0 0 0 0 0
 "4" "choroid plexus" "Neural stem cell" 1 1 0 0 0.74 24
-"5" "choroid plexus" "Astrocytes" 0 4 0 0.00593981543541356 0 0
+"5" "choroid plexus" "Astrocytes" 0 4 0 0 0 0
 "6" "choroid plexus" "Neuroblast" 0 1 0 0.00302495837441051 0.54 19
 "7" "choroid plexus" "Neural progenitors" 0 2 0 0 0 0
 "8" "choroid plexus" "Oligodendrocytes" 0 9 0 0 0 0
@@ -21,18 +21,18 @@
 "20" "Endothelial" "Ependymal" 0 0 0 0 0.18 0
 "21" "Endothelial" "OPC" 0 2 0 0 0 0
 "22" "Interneuron" "Interneuron" 18 18 98 0.0310551084709566 0.89 208
-"23" "Interneuron" "Neural stem cell" 0 0 75 0.0160183742089931 0.21 0
-"24" "Interneuron" "Astrocytes" 6 6 149 0.0282276879216991 0.37 0
-"25" "Interneuron" "Neuroblast" 0 0 77 0.0188198202046897 0.03 0
-"26" "Interneuron" "Neural progenitors" 0 0 74 0.0281115824781148 0.21 0
+"23" "Interneuron" "Neural stem cell" 7 7 75 0.0610183742089931 0.21 3
+"24" "Interneuron" "Astrocytes" 6 6 149 0.0282276879216991 0.87 0
+"25" "Interneuron" "Neuroblast" 0 0 7 0.00188198202046897 0.03 0
+"26" "Interneuron" "Neural progenitors" 0 0 7 0.0281115824781148 0.21 0
 "27" "Interneuron" "Oligodendrocytes" 0 7 0 0 0 0
 "28" "Interneuron" "Microglia" 0 0 0 0.00425696394744085 0.38 0
-"29" "Interneuron" "Ependymal" 0 0 29 0.00332813693871004 0.36 0
+"29" "Interneuron" "Ependymal" 10 10 29 0.0732813693871004 0.96 0
 "30" "Interneuron" "OPC" 0 0 0 0 0 0
-"31" "Neural stem cell" "Neural stem cell" 0 0 25 0.0585567730940682 0.69 0
+"31" "Neural stem cell" "Neural stem cell" 0 0 25 0.0985567730940682 0.69 0
 "32" "Neural stem cell" "Astrocytes" 0 1 39 0.00706933471891447 0.11 0
-"33" "Neural stem cell" "Neuroblast" 0 0 105 0.071834336807567 0.06 0
-"34" "Neural stem cell" "Neural progenitors" 0 0 70 0.0593686263881036 0.19 0
+"33" "Neural stem cell" "Neuroblast" 0 0 10 0.071834336807567 0.06 0
+"34" "Neural stem cell" "Neural progenitors" 10 10 70 0.0893686263881036 0.98 0
 "35" "Neural stem cell" "Oligodendrocytes" 0 1 104 0.0388207738703544 0.4 0
 "36" "Neural stem cell" "Microglia" 0 0 2 0.0199707675404323 0.21 0
 "37" "Neural stem cell" "Ependymal" 0 0 27 0.0223179112505227 0.03 0
@@ -58,10 +58,10 @@
 "57" "Oligodendrocytes" "Oligodendrocytes" 0 5 0 0.0350701089040251 0.4 115
 "58" "Oligodendrocytes" "Microglia" 0 4 32 0.00485098929080941 0.26 0
 "59" "Oligodendrocytes" "Ependymal" 0 0 0 0 0 0
-"60" "Oligodendrocytes" "OPC" 0 0 63 0.00484329839040327 0.12 0
+"60" "Oligodendrocytes" "OPC" 0 0 0 0.00484329839040327 0.12 0
 "61" "Microglia" "Microglia" 0 3 0 0.0011639158279548 0.2 0
 "62" "Microglia" "Ependymal" 0 0 0 0.00736579154665415 0.22 0
 "63" "Microglia" "OPC" 0 1 0 0 0 0
-"64" "Ependymal" "Ependymal" 0 0 1 0.0196578660337831 0.11 0
+"64" "Ependymal" "Ependymal" 5 5 4 0.0696578660337831 0.91 3
 "65" "Ependymal" "OPC" 0 0 0 0 0 0
 "66" "OPC" "OPC" 0 2 0 0 0 0

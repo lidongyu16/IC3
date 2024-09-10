@@ -1,4 +1,12 @@
-scan_statistic <- function(a, b, c, d) {  safe_log <- function(x) {
+#' Title
+#'
+#' @param A Information matrix,  each row represents a cell pair. The first column represents the x-axis coordinates of the midpoint of this cell pair, and the second column represents the y-axis coordinates of this cell pair, the third column represents communication status.1 represents communication. 
+#' @param num_permutations The number of permutations for estimate the null distribution. Default is 1000.
+#' @return The scan statistic of this data; The pvalue of this statistic; The center of the hotspot square; The size of the hotspot square; The permutation statistic value list.
+#'
+#' @examples IC3(A, cellinfo, lrinfo)
+scan_p_value <- function(A, num_permutations = 1000) {
+  scan_statistic <- function(a, b, c, d) {  safe_log <- function(x) {
   if (x == 0) {
     return(0)
   } else {
@@ -65,7 +73,6 @@ scan_entire_region <- function(A) {
   return(list(statistic = max_statistic, center = best_center, size = best_size))
 }
 library(progress)
-scan_p_value <- function(A, num_permutations = 1000) {
   observed_result <- scan_entire_region(A)
   observed_statistic <- observed_result$statistic
   best_center <- observed_result$center

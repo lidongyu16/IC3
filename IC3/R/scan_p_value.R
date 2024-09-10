@@ -1,10 +1,24 @@
-#' Title
+#' Title: Calculate Scan P-Value
 #'
-#' @param A Information matrix,  each row represents a cell pair. The first column represents the x-axis coordinates of the midpoint of this cell pair, and the second column represents the y-axis coordinates of this cell pair, the third column represents communication status.1 represents communication. 
-#' @param num_permutations The number of permutations for estimate the null distribution. Default is 1000.
-#' @return The scan statistic of this data; The pvalue of this statistic; The center of the hotspot square; The size of the hotspot square; The permutation statistic value list.
+#' Description: This function calculates the p-value by performing a scan based on a matrix of communication statuses between cell pairs.
 #'
-#' @examples IC3(A, cellinfo, lrinfo)
+#' @param A A numeric matrix where each row represents a cell pair. The first column represents the x-axis coordinates of the midpoint of this cell pair, the second column represents the y-axis coordinates, and the third column represents the communication status (1 for communication, 0 for no communication).
+#' @param num_permutations Number of permutations to estimate the null distribution. Default is 1000.
+#' @return A p-value for the observed communication pattern.
+#' @examples
+#' A <- matrix(c(1, 1, 1,
+#'               2, 2, 0,
+#'               3, 3, 1,
+#'               4, 4, 0,
+#'               5, 5, 0,
+#'               6, 6, 0), 
+#'             ncol = 3, byrow = TRUE)
+#' scan_p_value(A, num_permutations = 1000)
+#' @export
+scan_p_value <- function(A, num_permutations = 1000) {
+  # Your function implementation here
+}
+
 scan_p_value <- function(A, num_permutations = 1000) {
   scan_statistic <- function(a, b, c, d) {  safe_log <- function(x) {
   if (x == 0) {

@@ -55,7 +55,7 @@ This line of code will take approximately 75 minutes.
 
 Output result contains 5 parts. The first part is the communication probability matrix at cell type level. It is a T by T upper triangular matrix where T is the number of cell type. The second part is the communication probability matrix at single cell level. The last 3 parts are the parameter estimation of lambda, beta and r.
 
-## Verification of results
+## Verification of communication results
 
 ### Benchmark 
 
@@ -150,5 +150,18 @@ So we can get the following plot:
 
 
 ![image](https://github.com/lidongyu16/IC3/blob/master/IC3/data/obPRcurve.png)
+
+## Find communication hotspot with scan statistic using IC3 cell-level result
+
+Our results include not only cell type level communication, but also cell level. For all cells of two cell types, we can analyze whether the communications between the two cell types are clustered through the cell-level communication network. For this purpose we consider all possible cell pairs consisting of two cell types, and select the midpoint as a representative for each cell pair. Input three columns of information matrix: the midpoint horizontal axis coordinate, the vmidpoint ertical axis coordinate and the communication status of the cell pair. We can use the IC3 function scan_p_value to get the hotspot and significance level of the communication hotspot between the two cell types.
+
+We use the interaction between pericytes and endothelial cells in the MERFISH data mouse 1 slice 5 as an example. First, we download the example data from https://github.com/lidongyu16/IC3/tree/master/IC3/data/Peri-endomidpoint .
+
+Load the data after downloading the data to the local path:
+
+```R
+A=read.table("~/obdataforIC3/Peri-endomidpoint.txt",header=TRUE);
+```
+
 
 

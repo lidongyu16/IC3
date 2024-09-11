@@ -155,13 +155,46 @@ So we can get the following plot:
 
 Our results include not only cell type level communication, but also cell level. For all cells of two cell types, we can analyze whether the communications between the two cell types are clustered through the cell-level communication network. For this purpose we consider all possible cell pairs consisting of two cell types, and select the midpoint as a representative for each cell pair. Input three columns of information matrix: the midpoint horizontal axis coordinate, the vmidpoint ertical axis coordinate and the communication status of the cell pair. We can use the IC3 function scan_p_value to get the hotspot and significance level of the communication hotspot between the two cell types.
 
-We use the interaction between pericytes and endothelial cells in the MERFISH data mouse 1 slice 5 as an example. First, we download the example data from https://github.com/lidongyu16/IC3/tree/master/IC3/data/Peri-endomidpoint .
+We use the interaction between pericytes and endothelial cells in the MERFISH data mouse 1 slice 5 as an example. First, we download the example data from https://github.com/lidongyu16/IC3/tree/master/IC3/data/scanexampledata.
 
 Load the data after downloading the data to the local path:
 
 ```R
-A=read.table("~/obdataforIC3/Peri-endomidpoint.txt",header=TRUE);
+set.seed(1)
+A=read.table("~/obdataforIC3/scanexampledata.txt",header=TRUE);
+result <- scan_p_value(A, num_permutations = 1000)
+```
+The running process takes three minutes. The result is divided into five parts. The first two parts are the scan statistics and the corresponding p value of this data. The third and fourth parts are the center and side length of the corresponding hot spot area. The last part is the statistic result obtained by shuffling 1000 times.
+
+```R
+print(result$observed_statistic)
+print(result$p_value)
+print(result$best_center)
+print(result$best_size)
 ```
 
+We can get the result:
+
+7.448827;0.002;-2793.993 -4050.203;125.3125
+
+To visualize the results, we can first plot the null distribution of the scan statistic and the location of the sample data using density estimation.
+
+
+```R
+library(ggplot2)
+data <- data.frame(null_statistics = result$null_statistics)
+ggplot(data, aes(x = null_statistics)) +
+  geom_density(fill = "lightblue", alpha = 0.5) +  
+  geom_vline(aes(xintercept = result$observed_statistic), color = "red", linetype = "dashed", size = 1) +  
+  annotate("text", x = result$observed_statistic, y = 0.02, label = paste0("Observed\nScan\nStatistic: ", round(result$observed_statistic, 2)),
+           color = "red", angle = 90, vjust = -0.5, hjust = -0.2) +  
+  ggtitle("Null Distribution of Scan Statistic") +
+  theme_minimal() +
+  labs(x = "Statistic", y = "Density") +
+  annotate("text", x = result$observed_statistic -2 ,y = 0.2, label = paste0("p-value: ", round(result$p_value, 4)),
+           color = "black", hjust = -0.2, vjust = -0.5)  
+```
+
+![image](https://github.com/lidongyu16/IC3/blob/master/IC3/data/scanstatnull.png)
 
 

@@ -196,5 +196,30 @@ ggplot(data, aes(x = null_statistics)) +
 ```
 
 ![image](https://github.com/lidongyu16/IC3/blob/master/IC3/data/scanstatnull.png)
+We can also use ggplot to draw a dot plot of the data and the location of the hotspots:
 
+```R
+A_df <- data.frame(x = A[,1], y = A[,2], communication_status = as.factor(A[,3]))
+center_x <- result$best_center[1];center_y <- result$best_center[2]
+size <- result$best_size / 2  
+bottom_right_x <- center_x + size;bottom_right_y <- center_y - size
+top_right_x <- center_x + size;top_right_y <- center_y + size;bottom_left_x <- center_x - size;bottom_left_y <- center_y - size
+top_left_x <- center_x - size;top_left_y <- center_y + size;offset <- size
+label_x <- top_right_x + offset;label_y <- top_right_y + offset
+ggplot(A_df, aes(x = x, y = y)) +
+  geom_point(aes(color = communication_status), size = 0.2)+
+  scale_color_manual(name = "Communication Status", 
+                     values = c("1" = "purple", "0" = "#FFD700"), 
+                     labels = c("1" = "Yes", "0" = "No")) +   theme_minimal() +
+  ggtitle("Scatter Plot of Points with Highlighted Hotspot Region") +
+  annotate("segment", x = center_x - size, xend = center_x + size, y = center_y - size, yend = center_y - size, color = "red") + 
+  annotate("segment", x = center_x - size, xend = center_x + size, y = center_y + size, yend = center_y + size, color = "red") +  
+  annotate("segment", x = center_x - size, xend = center_x - size, y = center_y - size, yend = center_y + size, color = "red") + 
+  annotate("segment", x = center_x + size, xend = center_x + size, y = center_y - size, yend = center_y + size, color = "red") + 
+  geom_text(aes(x = label_x, y = label_y), 
+            label = paste0("p-value: ", round(result$p_value, 4)), color = "blue", size = 5) +   coord_fixed()  
+```
+Then we get:
+
+![image](https://github.com/lidongyu16/IC3/blob/master/IC3/data/exampleregion.png)
 

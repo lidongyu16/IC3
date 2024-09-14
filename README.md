@@ -184,7 +184,7 @@ To visualize the results, we can first plot the null distribution of the scan st
 library(ggplot2)
 data <- data.frame(null_statistics = result$null_statistics)
 ggplot(data, aes(x = null_statistics)) +
-  geom_density(fill = "lightblue", alpha = 3) +  
+  geom_density(fill = "lightblue", alpha = 0.5, adjust = 2) +  
   geom_vline(aes(xintercept = result$observed_statistic), color = "red", linetype = "dashed", size = 1) +  
   annotate("text", x = result$observed_statistic, y = 0.02, label = paste0("Observed\nScan\nStatistic: ", round(result$observed_statistic, 2)),
            color = "red", angle = 90, vjust = -0.5, hjust = -0.2) +  

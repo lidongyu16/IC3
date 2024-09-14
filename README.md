@@ -175,7 +175,7 @@ print(result$best_size)
 
 We can get the result:
 
-7.448827;0.002;-2793.993 -4050.203;125.3125
+5.99041; 0.022; -519.6952 -909.0308; 125.3125
 
 To visualize the results, we can first plot the null distribution of the scan statistic and the location of the sample data using density estimation.
 

@@ -63,7 +63,7 @@ scan_entire_region <- function(A) {
   width <- x_max - x_min
   height <- y_max - y_min
   long_edge <- max(width, height)
-  square_sizes <- seq(long_edge / 20, long_edge / 3, length.out = 10)
+  square_sizes <- seq(long_edge / 40, long_edge / 3, length.out = 20)
   x_centers <- seq(x_min, x_max, length.out = 10)
   y_centers <- seq(y_min, y_max, length.out = 10)
   max_statistic <- -Inf

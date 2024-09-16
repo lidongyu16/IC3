@@ -1,4 +1,4 @@
-#' Title: Calculate Scan P-Value
+#' Title: Calculate P-Value of scan statistic for Bernoulli random variables in 2D region 
 #'
 #' Description: This function calculates the p-value by performing a scan based on a matrix of communication statuses between cell pairs.
 #'

@@ -2,17 +2,21 @@
 % Please edit documentation in R/scan_p_value.R
 \name{scan_p_value}
 \alias{scan_p_value}
-\title{Title: Calculate Scan P-Value}
+\title{Title:Calculate P-Value of scan statistic for Bernoulli random variables in 2D region }
 \usage{
-scan_p_value(A, num_permutations = 1000)
+scan_p_value(A, num_permutations = 1000,min_size = 0.02,max_size = 0.3,sizeL = 20,centerL = 10)
 }
 \arguments{
 \item{A}{A numeric matrix where each row represents a cell pair. The first column represents the x-axis coordinates of the midpoint of this cell pair, the second column represents the y-axis coordinates, and the third column represents the communication status (1 for communication, 0 for no communication).}
 
 \item{num_permutations}{Number of permutations to estimate the null distribution. Default is 1000.}
+\item{min_size}{The ratio of the minimum value of the square window to the longest side of the slice. Default is 0.02.}
+\item{max_size}{The ratio of the maximum value of the square window to the longest side of the slice. Default is 0.3.}
+\item{sizeL}{The number of square side lengths to try to simulate, the possible length will be sampled evenly from minimum to maximum.  Default is 20.}
+\item{centerL}{The number of point center to try to simulate, the possible length will be sampled evenly from minimum to maximum. Default is 10.}
 }
 \value{
-A p-value for the observed communication pattern.
+The first part is the scan statistic, the second part is the P value, the third part is the center of the optimal hotspot square, the fourth part is the side length of the optimal hotspot square. The fifth part is the null distribution result.
 }
 \description{
 Description: This function calculates the p-value by performing a scan based on a matrix of communication statuses between cell pairs.

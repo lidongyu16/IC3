@@ -1,7 +1,7 @@
 "type1" "type2" "ID"
 "1" "Neuroblast" "Astrocytes" 10377448
-"2" "Astrocytes" "Neuroblast" 15291796
-"3" "Astrocytes" "Neuroblast" 16508306
+"2" "Neuroblast" "Neuroblast" 17883412
+"3" "Interneuron" "Ependymal" 35450289
 "4" "Neural stem cell" "Neural progenitors" 20844536
 "5" "Neural stem cell" "Endothelial" 21253820
 "6" "Interneuron" "Astrocytes" 23619383
@@ -25,5 +25,3 @@
 "24" "choroid plexus" "choroid plexus" 26174708
 "25"  "Ependymal" "Ependymal" 36415662
 "26" "Oligodendrocytes" "OPC"  31770564
-"27" "Interneuron" "Ependymal" 35450289
-"28" "Neuroblast" "Neuroblast" 17883412
